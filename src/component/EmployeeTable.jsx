@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { DataGrid, GridToolbarContainer, GridToolbarExport, GridActionsCellItem } from '@mui/x-data-grid';
-import { useDispatch, useSelector } from "react-redux";
-import { AiOutlineDelete } from "react-icons/ai";
-import {
-    deleteFromList
-} from "../features/globalSlice";
+import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
+import { useSelector } from "react-redux";
+
 
 // const employees ={merchant, date, status, text, total};
 
@@ -19,46 +16,45 @@ function CustomToolbar() {
 export default function EmployeeTable() {
     const employees = useSelector((state) => state.employees.employees);
     console.log(employees);
-    const dispatch = useDispatch();
     const [pageSize, setPageSize] = React.useState(100);
   
-    const columns = [
-        { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: true },
-        { field: 'merchant', headerName: 'Merchant', type: 'string', editable: true },
-        {
-            field: 'total',
-            headerName: 'Total (₦)',
-            type: 'number',
-            width: 150,
-            editable: true,
-        },
-        {
-            field: 'status',
-            headerName: 'Status',
-            type: 'string',
-            width: 180,
-            editable: true,
-        },
-        {
-            field: 'text',
-            headerName: 'comment',
-            type: 'string',
-            width: 220,
-            editable: true,
-        },
-        {
-            field: 'actions',
-            type: 'actions',
-            width: 80,
-            getActions: (id) => [
-                <GridActionsCellItem
-                    icon={<AiOutlineDelete />}
-                    label="Delete"
-                    onClick={() => dispatch(deleteFromList(id))}
-                />,
-            ],
-        },
-    ];
+const columns = [
+    { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: true },
+    { field: 'merchant', headerName: 'Merchant', type: 'string', editable: true },
+    {
+        field: 'total',
+        headerName: 'Total (₦)',
+        type: 'number',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'status',
+        headerName: 'Status',
+        type: 'string',
+        width: 180,
+        editable: true,
+    },
+    {
+        field: 'text',
+        headerName: 'comment',
+        type: 'string',
+        width: 220,
+        editable: true,
+    },
+    // {
+    //     field: 'actions',
+    //     type: 'actions',
+    //     width: 80,
+    //     getActions: (id) => [
+    //         <GridActionsCellItem
+    //             icon={<AiOutlineDelete />}
+    //             label="Delete"
+    //             onClick={() => dispatch(deleteFromList(id))}
+    //         />,
+    //     ],
+    // },
+];
 
    
 
