@@ -1,22 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 
-// Date
-// Merchant	Total	Status	Comment
-// const id = uuid();
 
 const initialState = {
     employees: [
         {
-            id: uuid(), date: '23/08/2022', merchant: 'New Mexico',
+            id: uuid(), date: '23/08/2022', merchant: 'Electronics',
             total: 2500, status: 'new', text: 'Expense from my business trip.',
         },
         {
-            id: uuid(), date: '02/09/2022', merchant: 'New Mexico',
+            id: uuid(), date: '02/09/2022', merchant: 'Hotel',
             total: 3500, status: 'reimbursed', text: 'Expense from my business.',
         },
         {
-            id: uuid(), date: '18/08/2022', merchant: 'New Mexico',
+            id: uuid(), date: '18/08/2022', merchant: 'Rental Car',
             total: 9000, status: 'new', text: 'Expense from my business trip.',
         },
     ],

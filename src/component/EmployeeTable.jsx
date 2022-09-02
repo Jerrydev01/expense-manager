@@ -22,9 +22,7 @@ export default function EmployeeTable() {
     const dispatch = useDispatch();
     const [pageSize, setPageSize] = React.useState(100);
   
-
-
-    const columns = React.useMemo(() => [
+    const columns = [
         { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: true },
         { field: 'merchant', headerName: 'Merchant', type: 'string', editable: true },
         {
@@ -60,8 +58,9 @@ export default function EmployeeTable() {
                 />,
             ],
         },
-    ],
-    );
+    ];
+
+   
 
     return (
         <div style={{ height: 500, width: '100%' }}>
@@ -84,6 +83,9 @@ export default function EmployeeTable() {
         </div>
     );
 }
+
+
+
 
 
 
