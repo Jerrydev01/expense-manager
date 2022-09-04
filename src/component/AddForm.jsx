@@ -29,6 +29,15 @@ const AddForm = () => {
         }));
     };
 
+    const handleClearInput = (e) => {
+        e.preventDefault();
+        setMerchant(e.target.value = '');
+        setTotal(e.target.value = '');
+        setDate(e.target.value = '');
+        setText(e.target.value = '');
+
+    };
+
 
     return (
         <section className="flex-col flex gap-4 lg:flex-row">
@@ -70,7 +79,7 @@ const AddForm = () => {
                                 value={total}
                                 onChange={(e) => setTotal(Number(e.target.value))}
                                 required
-                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Total" type="text" placeholder="₦" />
+                                className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Total" type="tel" placeholder="₦" />
 
                         </div>
                         <div className="w-full px-3">
@@ -123,6 +132,7 @@ const AddForm = () => {
                         </div>
                     </div>
                     <button>Save</button>
+                    <button onClick={handleClearInput}>Clear</button>
                 </form>
             </div >
             <div className="w-[60%]">

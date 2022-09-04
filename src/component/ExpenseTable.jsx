@@ -9,8 +9,6 @@ const ExpenseTable = () => {
         <section className="text-gray-600 body-font lg:text-xs text-sm relative">
             <div className="mx-auto">
                 <EmployeeTable />
-
-
             </div>
         </section >
 
