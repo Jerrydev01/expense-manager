@@ -2,8 +2,7 @@ import * as React from 'react';
 import { DataGrid, GridToolbarContainer, GridToolbarExport,GridActionsCellItem } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
 import { AiOutlineDelete} from "react-icons/ai";
-import {useDispatch} from "react-redux"
-import{ deleteFromList} from "../features/globalSlice"
+
 
 // const employees ={merchant, date, status, text, total};
 
