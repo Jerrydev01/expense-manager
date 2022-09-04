@@ -25,7 +25,7 @@ export default function EmployeeTable() {
         setTimeout(() => {
           setRows((rows) => rows.filter((row) => row.id !== id));
         });
-        console.log('hello')
+        console.log('delete')
       },
       [],
     );
@@ -81,7 +81,7 @@ export default function EmployeeTable() {
             <DataGrid
 
                 getRowId={(row) => row.id}
-                rows={rows}
+                rows={employees}
                 columns={columns}
                 experimentalFeatures={{ newEditingApi: true }}
                 pageSize={pageSize}
