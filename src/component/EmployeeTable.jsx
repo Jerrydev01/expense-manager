@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { DataGrid, GridToolbarContainer, GridToolbarExport,GridActionsCellItem } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarContainer, GridToolbarExport, GridActionsCellItem } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
-import { AiOutlineDelete} from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 
 
 // const employees ={merchant, date, status, text, total};
@@ -21,18 +21,29 @@ export default function EmployeeTable() {
     const [rows, setRows] = React.useState(employees);
 
     const deleteUser = React.useCallback(
-      (id) => () => {
-        setTimeout(() => {
-          setRows((rows) => rows.filter((row) => row.id !== id));
-        });
-        console.log('delete')
-      },
-      [],
+        (id) => () => {
+            setTimeout(() => {
+                setRows((rows) => rows.filter((row) => row.id !== id));
+            });
+            console.log('delete')
+        },
+        [],
     );
-  
-    const columns= React.useMemo(() =>[
+
+    const columns = React.useMemo(() => [
         { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: true },
-        { field: 'merchant', headerName: 'Merchant', type: 'string', editable: true },
+        {
+            field: 'merchant',
+            headerName: 'Merchant',
+            type: 'singleSelect',
+            editable: true,
+            width: 120,
+            valueOptions: [
+                'Electronics',
+                'Hotel',
+                'Rental Car',
+            ],
+        },
         {
             field: 'total',
             headerName: 'Total (₦)',
@@ -54,26 +65,26 @@ export default function EmployeeTable() {
             width: 220,
             editable: true,
         },
-    {
-        field: 'actions',
-        type: 'actions',
-        width: 80,
-        getActions: (params) => [
-          <GridActionsCellItem
-            icon={<AiOutlineDelete />}
-            label="Delete"
-            onClick={deleteUser(params.id)}
-          />,
-        ],
-      },
+        {
+            field: 'actions',
+            type: 'actions',
+            width: 80,
+            getActions: (params) => [
+                <GridActionsCellItem
+                    icon={<AiOutlineDelete />}
+                    label="Delete"
+                    onClick={deleteUser(params.id)}
+                />,
+            ],
+        },
     ],
-    [deleteUser],
+        [deleteUser],
 
-);
+    );
 
 
 
-   
+
 
     return (
         <div style={{ height: 500, width: '100%' }}>
