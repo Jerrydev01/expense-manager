@@ -12,27 +12,11 @@ import {
 
 
 const AddForm = () => {
-
-    // const [employee, setEmployee] = useState({
-    //     date: '',
-    //     merchant: 'Hotel',
-    //     total: amount,
-    //     status: 'New',
-    //     text: ''
-    // });
-
-  
-
     const [date, setDate] = useState('');
     const [merchant, setMerchant] = useState('Hotel');
     const [total, setTotal] = useState('');
     const [status, setStatus] = useState('New');
     const [text, setText] = useState('New');
-
-    // const [merchant, setMerchant] = useState('New Mexico');
-    // const [total, setTotal] = useState(0);
-    // const [text, setText] = useState('');
-
 
 
     const dispatch = useDispatch();

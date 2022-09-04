@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { DataGrid, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
+import { DataGrid, GridToolbarContainer, GridToolbarExport,GridActionsCellItem } from '@mui/x-data-grid';
 import { useSelector } from "react-redux";
-
+import { AiOutlineDelete} from "react-icons/ai";
+import {useDispatch} from "react-redux"
+import{ deleteFromList} from "../features/globalSlice"
 
 // const employees ={merchant, date, status, text, total};
 
@@ -15,46 +17,62 @@ function CustomToolbar() {
 
 export default function EmployeeTable() {
     const employees = useSelector((state) => state.employees.employees);
-    console.log(employees);
     const [pageSize, setPageSize] = React.useState(100);
+
+    const [rows, setRows] = React.useState(employees);
+
+    const deleteUser = React.useCallback(
+      (id) => () => {
+        setTimeout(() => {
+          setRows((rows) => rows.filter((row) => row.id !== id));
+        });
+        console.log('hello')
+      },
+      [],
+    );
   
-const columns = [
-    { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: true },
-    { field: 'merchant', headerName: 'Merchant', type: 'string', editable: true },
+    const columns= React.useMemo(() =>[
+        { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: true },
+        { field: 'merchant', headerName: 'Merchant', type: 'string', editable: true },
+        {
+            field: 'total',
+            headerName: 'Total (₦)',
+            type: 'number',
+            width: 150,
+            editable: false,
+        },
+        {
+            field: 'status',
+            headerName: 'Status',
+            type: 'string',
+            width: 180,
+            editable: true,
+        },
+        {
+            field: 'text',
+            headerName: 'comment',
+            type: 'string',
+            width: 220,
+            editable: true,
+        },
     {
-        field: 'total',
-        headerName: 'Total (₦)',
-        type: 'number',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'status',
-        headerName: 'Status',
-        type: 'string',
-        width: 180,
-        editable: true,
-    },
-    {
-        field: 'text',
-        headerName: 'comment',
-        type: 'string',
-        width: 220,
-        editable: true,
-    },
-    // {
-    //     field: 'actions',
-    //     type: 'actions',
-    //     width: 80,
-    //     getActions: (id) => [
-    //         <GridActionsCellItem
-    //             icon={<AiOutlineDelete />}
-    //             label="Delete"
-    //             onClick={() => dispatch(deleteFromList(id))}
-    //         />,
-    //     ],
-    // },
-];
+        field: 'actions',
+        type: 'actions',
+        width: 80,
+        getActions: (params) => [
+          <GridActionsCellItem
+            icon={<AiOutlineDelete />}
+            label="Delete"
+            onClick={deleteUser(params.id)}
+          />,
+        ],
+      },
+    ],
+    [deleteUser],
+
+);
+
+
 
    
 
@@ -64,7 +82,7 @@ const columns = [
             <DataGrid
 
                 getRowId={(row) => row.id}
-                rows={employees}
+                rows={rows}
                 columns={columns}
                 experimentalFeatures={{ newEditingApi: true }}
                 pageSize={pageSize}
