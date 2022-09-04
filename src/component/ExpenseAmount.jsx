@@ -41,7 +41,7 @@ export const ExpenseAmount = () => {
             <div>
                 <p className="pb-2"> To be reimbursed</p>
                 <hr />
-                <h1 className="text-3xl font-semibold text-center mt-7"> {moneyFormatter(employeeTotalAmount)}</h1>
+                <h1 className="text-3xl font-semibold text-center mt-7"> {moneyFormatter(+employeeTotalAmount)}</h1>
             </div>
         </div>
     )

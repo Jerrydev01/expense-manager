@@ -28,10 +28,8 @@ export const globalSlice = createSlice({
     reducers: {
         addToList: (state, action) => {
             state.employees.unshift(action.payload);
-            
-            return state;
         },
-       
+
         deleteFromList(state, action) {
             state.employees.map((employee) => {
                 if (employee.id === action.payload.id) {
@@ -45,7 +43,7 @@ export const globalSlice = createSlice({
 
         totalAmount(state) {
             const amount = state.employees.map(employee => employee.total);
-            const income = amount.filter(item => item > 0).reduce((acc, item) => (acc += item), 0);
+            const income = amount.filter(item => item >= 0).reduce((acc, item) => (acc += item), 0);
             state.employeeTotalAmount = income;
         }
 

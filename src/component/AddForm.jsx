@@ -10,21 +10,25 @@ import {
 } from "../features/globalSlice";
 
 
-const amount = parseInt('9000.00');
+
 const AddForm = () => {
 
-    const [employee, setEmployee] = useState({
-        id: '',
-        date: '',
-        merchant: 'Hotel',
-        total: amount,
-        status: 'New',
-        text: ''
-    });
+    // const [employee, setEmployee] = useState({
+    //     date: '',
+    //     merchant: 'Hotel',
+    //     total: amount,
+    //     status: 'New',
+    //     text: ''
+    // });
 
-    const onInputChange = (e) => {
-        setEmployee({ ...employee, [e.target.name]: e.target.value });
-    };
+  
+
+    const [date, setDate] = useState('');
+    const [merchant, setMerchant] = useState('Hotel');
+    const [total, setTotal] = useState('');
+    const [status, setStatus] = useState('New');
+    const [text, setText] = useState('New');
+
     // const [merchant, setMerchant] = useState('New Mexico');
     // const [total, setTotal] = useState(0);
     // const [text, setText] = useState('');
@@ -33,7 +37,6 @@ const AddForm = () => {
 
     const dispatch = useDispatch();
 
-    const { date, merchant, total, status, text } = employee;
 
     const handleAddToList = (e) => {
         e.preventDefault();
@@ -60,7 +63,7 @@ const AddForm = () => {
                                 <select
                                     name='merchant'
                                     value={merchant}
-                                    onChange={(e) => onInputChange(e)}
+                                    onChange={(e) => setMerchant(e.target.value)}
                                     required
                                     className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                                     <option>Electronics</option>
@@ -81,7 +84,7 @@ const AddForm = () => {
                             <input
                                 name='total'
                                 value={total}
-                                onChange={(e) => onInputChange(e)}
+                                onChange={(e) => setTotal(Number(e.target.value))}
                                 required
                                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Total" type="text" placeholder="₦" />
 
@@ -93,7 +96,7 @@ const AddForm = () => {
                             <input
                                 name='date'
                                 value={date}
-                                onChange={(e) => onInputChange(e)}
+                                onChange={(e) => setDate(e.target.value)}
                                 className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none 
                                 focus:bg-white focus:border-gray-500" id="grid-last-name"
                                 placeholder="dd/mm/yyyy"
@@ -108,7 +111,7 @@ const AddForm = () => {
                             <select
                                 name='status'
                                 value={status}
-                                onChange={(e) => onInputChange(e)}
+                                onChange={(e) => setStatus(e.target.value)}
                                 required
                                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                                 <option>New</option>
@@ -129,7 +132,7 @@ const AddForm = () => {
                             <textarea
                                 name='text'
                                 value={text}
-                                onChange={(e) => onInputChange(e)}
+                                onChange={(e) => setText(e.target.value)}
                                 required
                                 className="resize-none appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-comment" placeholder="Say something " />
                             <p className="text-gray-600 text-xs italic">Please fill all required</p>
