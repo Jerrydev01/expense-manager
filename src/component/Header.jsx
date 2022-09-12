@@ -18,8 +18,8 @@ const Header = () => {
                 <h1 className="text-white font-bold">Expense Manager</h1>
             </div>
             <div className="flex gap-6 justify-between items-center">
-                <h3 className="bg-[#7192be] text-white px-3 py-1 rounded-sm shadow-md">INFO</h3>
-                <h3 className="bg-[#7192be] text-white px-3 py-1 rounded-sm shadow-md">LOGOUT</h3>
+              
+                <h3 className="bg-[#7192be] text-white px-3 py-1 rounded-sm shadow-md lg:text-lg md:text-sm">LOGOUT</h3>
                 <div className="">
                     <label className="swap swap-rotate">
                         <input type="checkbox" />

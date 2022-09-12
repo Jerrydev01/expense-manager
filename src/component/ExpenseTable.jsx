@@ -6,7 +6,7 @@ const ExpenseTable = () => {
    
     return (
 
-        <section className="text-gray-600 body-font lg:text-xs text-sm relative">
+        <section className="text-gray-600 body-font lg:text-xs text-base relative">
             <div className="mx-auto">
                 <EmployeeTable />
             </div>

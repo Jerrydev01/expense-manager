@@ -18,20 +18,8 @@ export default function EmployeeTable() {
     const employees = useSelector((state) => state.employees.employees);
     const [pageSize, setPageSize] = React.useState(100);
 
-    // const [rows, setRows] = React.useState(employees);
-
-    // const deleteUser = React.useCallback(
-    //     (id) => () => {
-    //         setTimeout(() => {
-    //             setRows((rows) => rows.filter((row) => row.id !== id));
-    //         });
-    //         console.log('delete')
-    //     },
-    //     [],
-    // );
-
     const columns= [
-        { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: true },
+        { field: 'date', headerName: 'Date', type: 'date', width: 180, editable: false },
         {
             field: 'merchant',
             headerName: 'Merchant',
