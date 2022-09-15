@@ -1,81 +1,48 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
-import TextField from '@mui/material/TextField';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import dayjs from 'dayjs';
+import React from 'react'
+// import { useSelector } from 'react-redux';
+// import dayjs from 'dayjs';
 
-const FilterExpense = () => {
-    const employees = useSelector((state) => state.employees.employees);
-    const [dateSearch, setDateSearch] = useState(employees);
+export const categories = [
+    "new",
+    "in progress",
+    "reimbursed",
 
-    // const handleSearchDate = (e) => {
-    //     e.preventDefault();
-    //     setDateSearch(e.target.value);
-    // };
-    // console.log(dateSearch.filter(employee => employee.date));
+];
+
+const FilterExpense = ({ newChecked, defaultChecked, changeCheck }) => {
+    // const employees = useSelector((state) => state.employees.employees);
+    // const [dateSearch, setDateSearch] = useState(employees);
+
 
     return (
-        <section className="px-8 mt-8">
+        <section className="px-8 mt-8 w-full h-screen lg:h-full ">
             <div className="">
                 <div className="flex justify-between items-center mb-2">
                     <p className="">Filter Expenses</p>
                     <p className="text-blue-500"><button>Clear Filters</button></p>
                 </div>
                 <hr />
-                <form className="w-full max-w-lg text-sm">
+                <form className="w-full max-w-lg text-sm ">
                     <div className="flex flex-wrap -mx-3 mb-6">
                         <div className="w-full px-3 mb-6 md:mb-0 pt-2">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-Total">
                                 From
                             </label>
-                            <div className="text-xs">
-                                <LocalizationProvider
-                                    dateAdapter={AdapterDayjs}>
-                                    <DatePicker
-                                        className="w-full appearance-none block bg-gray-200 text-gray-700 border  leading-tight focus:outline-none focus:bg-white"
-                                        id="grid-date"
-                                        openTo="day"
-                                        views={['day', 'month', 'year']}
-                                        value={dateSearch}
-                                        onChange={(newValue) => {
-                                            setDateSearch(dayjs(newValue).format("DD/MM/YYYY"));
-                                        }}
-                                        renderInput={(params) => <TextField {...params} />}
-                                    />
-                                </LocalizationProvider>
-                            </div>
-                            {/* <input
 
-                                className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Total" type="date" placeholder="" /> */}
+                            <input
+
+                                className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Total" type="date" placeholder="" />
 
                         </div>
-                        { }
+
 
                         <div className="w-full px-3 mb-6 md:mb-0 pt-2">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-Total">
                                 To
                             </label>
-                            <div className="text-xs">
-                                <LocalizationProvider
-                                    dateAdapter={AdapterDayjs}>
-                                    <DatePicker
-                                        className="w-full appearance-none block bg-gray-200 text-gray-700 border  leading-tight focus:outline-none focus:bg-white"
-                                        id="grid-date"
-                                        openTo="day"
-                                        views={['day', 'month', 'year']}
-                                        value={dateSearch}
-                                        onChange={(newValue) => {
-                                            setDateSearch(dayjs(newValue).format("DD/MM/YYYY"));
-                                        }}
-                                        renderInput={(params) => <TextField {...params} />}
-                                    />
-                                </LocalizationProvider>
-                            </div>
-                            {/* <input
+                            <input
 
-                                className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Total" type="date" placeholder="" /> */}
+                                className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-Total" type="date" placeholder="" />
 
                         </div>
                         <div className="flex w-full items-center gap-2 justify-between mt-3">
@@ -118,24 +85,21 @@ const FilterExpense = () => {
 
                         </div>
                     </div>
-                    <div className="flex flex-wrap">
-                        <div className="form-control">
-                            <label className="label cursor-pointer gap-2">
-                                <input type="checkbox" className="checkbox checkbox-primary" />
-                                <span className="label-text">new</span>
-                            </label>
-                        </div>
-                        <div className="form-control">
-                            <label className="label cursor-pointer gap-2">
-                                <input type="checkbox" className="checkbox checkbox-primary" />
-                                <span className="label-text">In Progress</span>
-                            </label>
-                        </div>
-                        <div className="form-control">
-                            <label className="label cursor-pointer gap-2">
-                                <input type="checkbox" className="checkbox checkbox-primary" />
-                                <span className="label-text">Reimbursed</span>
-                            </label>
+                    <div className="">
+                        <div className=" flex-wrap flex">
+                            {categories.map((category) => {
+                                return <label
+                                    key={category}
+                                    className="label cursor-pointer gap-2">
+                                    <input
+                                        // onClick={newChecked}
+                                        onChange={newChecked}
+                                        defaultChecked={defaultChecked}
+                                        value={category}
+                                        type="checkbox" className="checkbox checkbox-primary" />
+                                    <span className="label-text ">{category}</span>
+                                </label>
+                            })}
                         </div>
                     </div>
                 </form>

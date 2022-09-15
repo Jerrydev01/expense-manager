@@ -62,7 +62,7 @@ export const ExpenseAmount = () => {
             </div>
             {
                 filterMobile === true
-                    ? <div className="m-auto flex justify-center pb-5"><FilterExpense /></div>
+                    ? <div className="m-auto flex relative justify-center pb-5 h-[40rem] overflow-x-scroll  z-30"><FilterExpense /></div>
                     : null
             }
         </div>

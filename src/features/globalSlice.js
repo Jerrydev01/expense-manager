@@ -15,7 +15,7 @@ const initialState = {
         },
         {
             id: uuid(), date: '18/08/2022', merchant: 'Rental Car',
-            total: 9000, status: 'new', text: 'Expense from my business trip.',
+            total: 9000, status: 'in progress', text: 'Expense from my business trip.',
         },
     ],
     employeeTotalAmount: 0,
@@ -46,12 +46,18 @@ export const globalSlice = createSlice({
             const amount = state.employees.map(employee => employee.total);
             const income = amount.filter(item => item >= 0).reduce((acc, item) => (acc += item), 0);
             state.employeeTotalAmount = income;
-        }
+        },
 
+        filterChecked(state, action) {
+            const filter = state.employees.map((employee) => employee.status);
+            const checkFilter = filter.filter(item => item.status);
+            console.log(checkFilter)
+            state.employees = checkFilter;
+        }
     },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToList, editList, deleteFromList, totalAmount } = globalSlice.actions;
+export const { addToList, editList, deleteFromList, totalAmount, filterChecked } = globalSlice.actions;
 
 export default globalSlice.reducer;

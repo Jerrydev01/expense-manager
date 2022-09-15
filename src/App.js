@@ -1,27 +1,53 @@
-import React from 'react';
+import React, { useState} from 'react';
 
 import Header from "./component/Header";
 import ExpenseTable from "./component/ExpenseTable";
 import { ExpenseAmount } from "./component/ExpenseAmount";
 import FilterExpense from './component/FilterExpense';
-
+import { useSelector, useDispatch } from 'react-redux';
 
 import AddForm from './component/AddForm';
 import { AiOutlinePlus } from "react-icons/ai";
+import {
+  filterChecked,
+} from "./features/globalSlice";
+
+
 
 function App() {
+  const employees = useSelector((state) => state.employees.employees);
+  const dispatch = useDispatch();
 
+  // const [newCheck, setNewCheck] = useState(checked)
+  const [newCheck, setNewCheck] = useState(
+    employees);
+  const status = employees.map(employee => employee.status);
+  const filterStatus = status.filter(employee => employee);
+  console.log(filterStatus)
+
+  const newChecked = () => {
+    if ( filterStatus[0] === 'new') {
+      dispatch(filterChecked())
+
+    } else {
+    
+    }
+  };
 
 
   return (
 
-    <main className="fixed w-full overflow-y-auto">
+    <main className="fixed w-full overflow-y-hidden">
       <div className="">
         <Header />
       </div>
       <section className="flex lg:flex-row lg:h-screen flex-col-reverse lg:px-5">
         <div className="lg:w-[25%]  hidden lg:block">
-          <FilterExpense />
+          <FilterExpense
+            newChecked={newChecked}
+            defaultChecked={newCheck}
+            changeCheck={() => setNewCheck(!newCheck)}
+          />
         </div>
         <div className="lg:w-[55%] lg:shadow-lg shadow-2xl h-screen">
           <ExpenseTable />
