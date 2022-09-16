@@ -98,8 +98,8 @@ const AddForm = () => {
                                         <DatePicker
                                             className="w-full appearance-none block bg-gray-200 text-gray-700 border  leading-tight focus:outline-none focus:bg-white"
                                             id="grid-date"
-                                            openTo="day"
-                                            views={['day', 'month', 'year']}
+                                            openTo="month"
+                                            views={['month', 'day', 'year']}
                                             value={date}
                                             onChange={(newValue) => {
                                                 setDate(dayjs(newValue).format("DD/MM/YYYY"));
@@ -158,9 +158,9 @@ const AddForm = () => {
                     </div>
                     <div className="px-5 flex gap-3 mt-3">
                         <button className="bg-blue-500 text-white px-3 py-2 shadow-md rounded-md">Save</button>
-                        <button 
-                        className="bg-red-500 text-white px-3 py-2 shadow-md rounded-md"
-                        onClick={handleClearInput}>Clear</button>
+                        <button
+                            className="bg-red-500 text-white px-3 py-2 shadow-md rounded-md"
+                            onClick={handleClearInput}>Clear</button>
                     </div>
                 </form>
             </div >

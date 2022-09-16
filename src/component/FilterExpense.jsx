@@ -1,6 +1,9 @@
 import React from 'react'
-// import { useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 // import dayjs from 'dayjs';
+// import {
+//     filterChecked,
+// } from "../features/globalSlice";
 
 export const categories = [
     "new",
@@ -9,10 +12,21 @@ export const categories = [
 
 ];
 
-const FilterExpense = ({ newChecked, defaultChecked, changeCheck }) => {
-    // const employees = useSelector((state) => state.employees.employees);
-    // const [dateSearch, setDateSearch] = useState(employees);
-
+const FilterExpense = () => {
+    const employees = useSelector((state) => state.employees.employees);
+    const employ = employees.map((employee) => employee.status)
+    // const [dateSearch, setDateSearch] = useState();
+    // const dispatch = useDispatch();
+    const newChecked = (employees, e) => {
+        // dispatch(filterChecked());
+        // setDateSearch(e.target.value)
+        if (employ === categories['new']) {
+            const me = employ.filter((id) => id[0] !==employ)
+            console.log("🚀 ~ file: FilterExpense.jsx ~ line 25 ~ newChecked ~ me", me)
+        } else {
+            console.error('error')
+        }
+    };
 
     return (
         <section className="px-8 mt-8 w-full h-screen lg:h-full ">
@@ -92,9 +106,8 @@ const FilterExpense = ({ newChecked, defaultChecked, changeCheck }) => {
                                     key={category}
                                     className="label cursor-pointer gap-2">
                                     <input
-                                        // onClick={newChecked}
+
                                         onChange={newChecked}
-                                        defaultChecked={defaultChecked}
                                         value={category}
                                         type="checkbox" className="checkbox checkbox-primary" />
                                     <span className="label-text ">{category}</span>
