@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import Header from "./component/Header";
 import ExpenseTable from "./component/ExpenseTable";
 import { ExpenseAmount } from "./component/ExpenseAmount";
-import { categories } from './component/FilterExpense'
+// import { categories } from './component/FilterExpense'
 
 import FilterExpense from './component/FilterExpense';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import AddForm from './component/AddForm';
 import { AiOutlinePlus, AiFillDelete } from "react-icons/ai";
@@ -15,13 +15,13 @@ import { clearTable } from './features/globalSlice'
 // clearTable
 
 function App() {
-  const employees = useSelector((state) => state.employees.employees);
+  // const employees = useSelector((state) => state.employees.employees);
   const dispatch = useDispatch();
 
   // const [newCheck, setNewCheck] = useState(checked)
 
-  const [filter, setFilter] = useState([]);
-  const [status, setStatus] = useState([]);
+  // const [filter, setFilter] = useState([]);
+  // const [status, setStatus] = useState([]);
 
 
 
