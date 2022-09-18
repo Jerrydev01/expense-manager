@@ -20,7 +20,7 @@ export default function EmployeeTable() {
             <section className="text-gray-600 body-font w-full ">
                 <div className="container pb-10 pt-6">
 
-                    <div className=" w-full mx-auto overflow-auto h-[40rem] pb-32">
+                    <div className=" w-full mx-auto overflow-auto h-[50rem] pb-32">
                         <table className="table-auto w-screen lg:w-full text-left whitespace-no-wrap">
                             <thead>
                                 <tr>
@@ -37,7 +37,7 @@ export default function EmployeeTable() {
                                 {employees.map((employee) => {
                                     const { id, date, merchant, total, status, text } = employee
                                     return <tr key={id}>
-                                        <td className="px-4 border-t-2 fixed lg:relative w-[8rem] shadow-transparent  border-gray-200 py-3 bg-white">{dayjs(date).format('DD/MM/YYYY')}</td>
+                                        <td className="px-4 border-t-2 fixed lg:relative w-[8rem] shadow-transparent  border-gray-200 py-3 bg-white h-fit">{dayjs(date).format('DD/MM/YYYY')}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3 pl-[9rem] lg:pl-4">{merchant}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3">{total}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3">{status}</td>
