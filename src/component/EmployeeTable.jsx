@@ -14,11 +14,11 @@ export default function EmployeeTable() {
     // };
 
     return (
-        <div style={{ height: '50rem' }}>
+        <div>
 
 
             <section className="text-gray-600 body-font w-full ">
-                <div className="container pb-10 pt-6">
+                <div className="container pb-10 lg:pt-6">
 
                     <div className=" w-full mx-auto overflow-auto h-[50rem] pb-32">
                         <table className="table-auto w-screen lg:w-full text-left whitespace-no-wrap">
