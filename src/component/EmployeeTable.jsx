@@ -33,7 +33,7 @@ export default function EmployeeTable() {
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className='bg-white'>
                                 {employees.map((employee) => {
                                     const { id, date, merchant, total, status, text } = employee
                                     return <tr key={id}>
@@ -41,7 +41,7 @@ export default function EmployeeTable() {
                                         <td className="px-4 border-t-2 border-gray-200 py-3 pl-[9rem] lg:pl-4">{merchant}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3">{total}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3">{status}</td>
-                                        <td className="px-4 border-t-2 border-gray-200 py-3">{text}  </td>
+                                        <td className="px-4 border-t-2 border-gray-200 py-3 w-[40rem] ">{text}  </td>
                                         <td
                                             onClick={() => dispatch(deleteFromIndividualList(employee))}
                                             className="px-4 border-t-2 border-gray-200 py-3 text-red-500 text-center flex justify-center">
