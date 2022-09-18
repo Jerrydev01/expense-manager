@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 // import dayjs from 'dayjs';
 import {
     filterChecked,
@@ -7,28 +7,22 @@ import {
     filterCheckedReimbursed,
 } from "../features/globalSlice";
 
-export const categories = ["New", "In progress", "Reimbursed"];
+// export const categories = ["New", "In progress", "Reimbursed"];
 
 const FilterExpense = () => {
-    const employees = useSelector((state) => state.employees.employees);
+    // const employees = useSelector((state) => state.employees.employees);
     // const { filterEmployees } = useSelector((state) => state.employees);
     // console.log("🚀 ~ file: FilterExpense.jsx ~ line 22 ~ FilterExpense ~ filterEmployees", filterEmployees)
 
-    const [filter, setFilter] = useState(employees);
-    const [isChecked, setIsChecked] = useState(true);
+    // const [filter, setFilter] = useState(employees);
 
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        setFilter(filter);
-    }, [filter]);
-
-    const newChecked = () => {
-        if (isChecked) {
+    const newChecked = (e) => {
+        if (e.target.value) {
             dispatch(filterChecked());
         } else {
-            setFilter(filter);
-            setIsChecked(!isChecked);
+            // setFilter(filter);
+            // setIsChecked(employees);
         }
     };
     const newChecked2 = () => {
@@ -144,7 +138,7 @@ const FilterExpense = () => {
                         <div className=" flex-wrap flex">
                             <label className="label cursor-pointer gap-2">
                                 <input
-                                    defaultChecked={!isChecked}
+
                                     onChange={newChecked}
                                     type="checkbox"
                                     className="checkbox checkbox-primary"

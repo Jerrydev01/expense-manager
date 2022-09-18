@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Header from "./component/Header";
-import ExpenseTable from "./component/ExpenseTable";
+import EmployeeTable from "./component/EmployeeTable";
 import { ExpenseAmount } from "./component/ExpenseAmount";
 // import { categories } from './component/FilterExpense'
 
@@ -37,17 +37,17 @@ function App() {
           />
         </div>
         <div className="lg:w-[55%] lg:shadow-lg shadow-2xl h-screen">
-          <ExpenseTable />
+          <EmployeeTable />
         </div>
         <div className="lg:w-[20%]">
           <ExpenseAmount />
         </div>
       </section>
       <div className="">
-      <label htmlFor="my-modal" className=" p-3 rounded-full bg-blue-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] lg:right-[14%] md:right-[18%] right-[25%] z-20 "><AiOutlinePlus /></label>
-      <div
-        onClick={() => dispatch(clearTable())}
-        htmlFor="" className=" p-3 rounded-full bg-red-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] right-[10%] z-20 "><AiFillDelete /></div>
+        <label htmlFor="my-modal" className=" p-3 rounded-full bg-blue-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] lg:right-[14%] md:right-[18%] right-[25%] z-20 "><AiOutlinePlus /></label>
+        <div
+          onClick={() => dispatch(clearTable())}
+          htmlFor="" className=" p-3 rounded-full bg-red-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] right-[10%] z-20 "><AiFillDelete /></div>
 
       </div>
 

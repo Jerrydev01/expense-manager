@@ -74,11 +74,11 @@ export const globalSlice = createSlice({
         deleteFromIndividualList(state, action) {
             state.employees.map((employee) => {
                 if (employee.id === action.payload.id) {
-                    const nextEmployee = state.employees.filter(
+                    const nextEmployees = state.employees.filter(
                         (list) => list.id !== employee.id
                     );
-                    state.employees = nextEmployee;
-                    state.employees = nextEmployee.total;
+                    state.employees = nextEmployees;
+                    localStorage.setItem("employee", JSON.stringify(state.employees));
                 }
                 return state;
             });
