@@ -1,31 +1,51 @@
-import React from 'react'
-import {  useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 // import dayjs from 'dayjs';
-// import {
-//     filterChecked,
-// } from "../features/globalSlice";
+import {
+    filterChecked,
+    filterCheckedInProgress,
+    filterCheckedReimbursed,
+} from "../features/globalSlice";
 
 export const categories = [
-    "new",
-    "in progress",
-    "reimbursed",
+    "New",
+    "In progress",
+    "Reimbursed",
 
 ];
 
 const FilterExpense = () => {
+
+
     const employees = useSelector((state) => state.employees.employees);
-    const employ = employees.map((employee) => employee.status)
-    // const [dateSearch, setDateSearch] = useState();
-    // const dispatch = useDispatch();
-    const newChecked = (employees, e) => {
-        // dispatch(filterChecked());
-        // setDateSearch(e.target.value)
-        if (employ === categories['new']) {
-            const me = employ.filter((id) => id[0] !==employ)
-            console.log("🚀 ~ file: FilterExpense.jsx ~ line 25 ~ newChecked ~ me", me)
+    // const { filterEmployees } = useSelector((state) => state.employees);
+    // console.log("🚀 ~ file: FilterExpense.jsx ~ line 22 ~ FilterExpense ~ filterEmployees", filterEmployees)
+
+    const [filter, setFilter] = useState(employees);
+    const [isChecked, setIsChecked] = useState(true);
+
+
+
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        setFilter(filter);
+    }, [filter]);
+
+    const newChecked = () => {
+        if (isChecked) {
+            dispatch(filterChecked());
         } else {
-            console.error('error')
+            setFilter(filter)
+            setIsChecked(!isChecked)
         }
+    };
+    const newChecked2 = () => {
+        dispatch(filterCheckedInProgress());
+    };
+    const newChecked3 = () => {
+        dispatch(filterCheckedReimbursed());
     };
 
     return (
@@ -101,18 +121,37 @@ const FilterExpense = () => {
                     </div>
                     <div className="">
                         <div className=" flex-wrap flex">
-                            {categories.map((category) => {
-                                return <label
-                                    key={category}
-                                    className="label cursor-pointer gap-2">
-                                    <input
 
-                                        onChange={newChecked}
-                                        value={category}
-                                        type="checkbox" className="checkbox checkbox-primary" />
-                                    <span className="label-text ">{category}</span>
-                                </label>
-                            })}
+                            <label
+
+                                className="label cursor-pointer gap-2">
+                                <input
+                                    defaultChecked={!isChecked}
+                                    onChange={newChecked}
+                                    type="checkbox" className="checkbox checkbox-primary" />
+                                <span className="label-text ">New</span>
+                            </label>
+                            <label
+
+                                className="label cursor-pointer gap-2">
+                                <input
+
+                                    onChange={newChecked2}
+                                    // value={category}
+                                    type="checkbox" className="checkbox checkbox-primary" />
+                                <span className="label-text ">In progress</span>
+                            </label>
+                            <label
+
+                                className="label cursor-pointer gap-2">
+                                <input
+
+                                    onChange={newChecked3}
+                                    // value={category}
+                                    type="checkbox" className="checkbox checkbox-primary" />
+                                <span className="label-text ">Reimbursed</span>
+                            </label>
+
                         </div>
                     </div>
                 </form>

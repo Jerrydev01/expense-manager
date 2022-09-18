@@ -19,10 +19,23 @@ const employee = localStorage.getItem('employee') !== null ? JSON.parse(localSto
 
 const initialState = {
     employees: employee,
+    filterEmployees: [
+        {
+            id: uuid(), date: '23/08/2022', merchant: 'Electronics',
+            total: 2500, status: 'new', text: 'Expense from my business trip.',
+        },
+        {
+            id: uuid(), date: '02/09/2022', merchant: 'Hotel',
+            total: 3500, status: 'reimbursed', text: 'Expense from my business.',
+        },
+        {
+            id: uuid(), date: '18/08/2022', merchant: 'Rental Car',
+            total: 9000, status: 'in progress', text: 'Expense from my business trip.',
+        },
+    ],
     employeeTotalAmount: 0,
-};
 
-// console.log(initialState);
+};
 
 export const globalSlice = createSlice({
     name: 'employees',
@@ -30,10 +43,11 @@ export const globalSlice = createSlice({
     reducers: {
         addToList: (state, action) => {
             state.employees.unshift(action.payload);
+            state.filterEmployees.unshift(action.payload);
             localStorage.setItem('employee', JSON.stringify(state.employees));
         },
 
-        deleteFromList(state, action) {
+        deleteFromIndividualList(state, action) {
             state.employees.map((employee) => {
                 if (employee.id === action.payload.id) {
                     const nextEmployee = state.employees.filter((list) => list.id !== employee.id);
@@ -52,15 +66,43 @@ export const globalSlice = createSlice({
 
 
         filterChecked: (state, action) => {
-            const me = state.employees.map((employee) => {
-                if (employee.status === 'me') {
-                    const nextEmployee = state.employees.filter((list) => list.status === employee.status);
+            state.employees.map((employee) => {
+                if (employee.status.includes('New')) {
+                    const nextEmployee = state.employees.filter(employ => employ?.status === 'New');
                     state.employees = nextEmployee;
-                    state.employees = nextEmployee.total;
+
                 }
                 return state;
             });
-            console.log("🚀 ~ file: globalSlice.js ~ line 72 ~ me ~ me", me)
+
+            // const filterEmployees = state.employees.filter((user) => user.status.includes(action.payload));
+            // console.log("🚀 ~ file: globalSlice.js ~ line 81 ~ filterEmployees", filterEmployees)
+            // return {
+            //     ...state,
+            //     filterChecked: action.payload.length > 0 ? filterEmployees : [...state.employees]
+            // };
+
+        },
+        filterCheckedReimbursed: (state, action) => {
+            state.employees.map((employee) => {
+                if (employee.status.includes('Reimbursed')) {
+                    const nextEmployee = state.employees.filter(employ => employ?.status === 'Reimbursed');
+                    state.employees = nextEmployee;
+                }
+                return state;
+            });
+
+        },
+
+        filterCheckedInProgress: (state, action) => {
+            state.employees.map((employee) => {
+                if (employee.status.includes('In progress')) {
+                    const nextEmployee = state.employees.filter(employ => employ?.status === 'In progress');
+                    state.employees = nextEmployee;
+                }
+                return state.employees;
+            });
+
         },
 
         clearTable: (state, action) => {
@@ -73,6 +115,6 @@ export const globalSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addToList, editList, deleteFromList, totalAmount, filterChecked, clearTable } = globalSlice.actions;
+export const { addToList, editList, deleteFromIndividualList: deleteFromIndivitualList, totalAmount, filterChecked, clearTable, filterCheckedReimbursed, filterCheckedInProgress } = globalSlice.actions;
 
 export default globalSlice.reducer;

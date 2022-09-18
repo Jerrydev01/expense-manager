@@ -17,7 +17,7 @@ import {
 
 
 const AddForm = () => {
-    const [date, setDate] = React.useState(dayjs().format('DD/MM/YYYY'));
+    const [date, setDate] = React.useState('2022-09-02');
     const [merchant, setMerchant] = useState('Hotel');
     const [total, setTotal] = useState('');
     const [status, setStatus] = useState('New');
@@ -92,7 +92,7 @@ const AddForm = () => {
                                     Date
                                 </label>
 
-                                <div className="text-xs">
+                                {/* <div className="text-xs">
                                     <LocalizationProvider
                                         dateAdapter={AdapterDayjs}>
                                         <DatePicker
@@ -107,17 +107,17 @@ const AddForm = () => {
                                             renderInput={(params) => <TextField {...params} />}
                                         />
                                     </LocalizationProvider>
-                                </div>
+                                </div> */}
 
 
-                                {/* <input
-        name='date'
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-        className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none 
-        focus:bg-white focus:border-gray-500" id="grid-last-name"
-        placeholder="dd/mm/yyyy"
-        type="date" required /> */}
+                                <input
+                                    name='date'
+                                    value={date}
+                                    onChange={(e) => setDate(e.target.value)}
+                                    className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none 
+                                     focus:bg-white focus:border-gray-500" id="grid-last-name"
+                                    placeholder="YYYY-MM-DD"
+                                    type="date" required />
                             </div>
                         </div>
                         <div className="w-full md:mb-0">
