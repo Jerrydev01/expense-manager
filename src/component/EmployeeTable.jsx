@@ -1,30 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { AiFillDelete } from "react-icons/ai";
-import { deleteFromIndividualList } from '../features/globalSlice';
+import { deleteFromIndividualList, sortDateDescend, sortDateAscend } from '../features/globalSlice';
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import dayjs from 'dayjs';
 
 export default function EmployeeTable() {
     const employees = useSelector((state) => state.employees.employees);
+    const [sortDate, setSortDate] = useState(true);
 
     const dispatch = useDispatch();
 
-    // const deleteFromLists = (id) => {
-    //     dispatch(deleteFromIndividualList(id));
-    // };
+    const handleSortDate = () => {
+        if (sortDate) {
+            setSortDate(false);
+            dispatch(sortDateAscend())
+
+        } else {
+            setSortDate(true);
+            dispatch(sortDateDescend())
+        }
+
+    };
 
     return (
         <div>
 
 
-            <section className="text-gray-600 body-font w-full ">
+            <section className="text-gray-600 body-font lg:w-full w-screen ">
                 <div className="container pb-10 lg:pt-6">
 
-                    <div className=" w-full mx-auto overflow-auto h-[50rem] pb-32">
-                        <table className="table-auto w-screen lg:w-full text-left whitespace-no-wrap">
+                    <div className=" w-full mx-auto overflow-auto h-[45rem] pb-32">
+                        <table className="table-auto w-screen lg:w-full text-left whitespace-no-wrap overflow-auto">
                             <thead>
                                 <tr>
-                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 fixed lg:relative w-[8rem] rounded-tl rounded-bl">Date</th>
+                                    {
+                                        sortDate === false
+                                            ? <th
+                                                onClick={handleSortDate}
+                                                className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 fixed lg:relative w-[8rem] rounded-tl rounded-bl flex items-center gap-3">Date <button ><AiOutlineArrowUp /></button>
+
+                                            </th>
+                                            : <th
+                                                onClick={handleSortDate}
+                                                className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 fixed lg:relative w-[8rem] rounded-tl rounded-bl flex items-center gap-3">Date <button><AiOutlineArrowDown /></button>
+
+                                            </th>
+                                    }
                                     <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 pl-[9rem] lg:pl-4">Merchant</th>
                                     <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Total</th>
                                     <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Status</th>
@@ -33,18 +55,19 @@ export default function EmployeeTable() {
 
                                 </tr>
                             </thead>
-                            <tbody className='bg-white'>
+                            <tbody className='bg-white w-screen whitespace-nowrap'>
                                 {employees.map((employee) => {
                                     const { id, date, merchant, total, status, text } = employee
                                     return <tr key={id}>
-                                        <td className="px-4 border-t-2 fixed lg:relative w-[8rem] shadow-transparent  border-gray-200 py-3 bg-white h-fit">{dayjs(date).format('DD/MM/YYYY')}</td>
+                                        <td
+                                            className="px-4 border-t-2 fixed lg:relative w-[8rem] shadow-transparent  border-gray-200 py-3 bg-white h-fit">{dayjs(date).format('DD/MM/YYYY')}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3 pl-[9rem] lg:pl-4">{merchant}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3">{total}</td>
                                         <td className="px-4 border-t-2 border-gray-200 py-3">{status}</td>
-                                        <td className="px-4 border-t-2 border-gray-200 py-3 w-[40rem] ">{text}  </td>
+                                        <td className="px-4 border-t-2 border-gray-200 py-3 ">{text}  </td>
                                         <td
                                             onClick={() => dispatch(deleteFromIndividualList(employee))}
-                                            className="px-4 border-t-2 border-gray-200 py-3 text-red-500 text-center flex justify-center">
+                                            className="px-4 border-t-2 border-gray-200 py-3 text-red-500 text-center flex justify-center items-center">
                                             {<AiFillDelete />}
                                         </td>
 

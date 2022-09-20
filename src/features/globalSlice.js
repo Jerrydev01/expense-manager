@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
-
+import dayjs from 'dayjs';
 // local storage
 const employee =
     localStorage.getItem("employee") !== null ? JSON.parse(localStorage.getItem("employee")) : [
         {
             id: uuid(),
-            date: "23/08/2022",
+            date: `${dayjs('02/05/2022').format('DD/MM/YYYY')}`,
             merchant: "Electronics",
             total: 2500,
             status: "new",
@@ -14,7 +14,7 @@ const employee =
         },
         {
             id: uuid(),
-            date: "02/09/2022",
+            date: `${dayjs('02/07/2022').format('DD/MM/YYYY')}`,
             merchant: "Hotel",
             total: 3500,
             status: "reimbursed",
@@ -22,7 +22,7 @@ const employee =
         },
         {
             id: uuid(),
-            date: "18/08/2022",
+            date: `${dayjs('09/02/2022').format('DD/MM/YYYY')}`,
             merchant: "Rental Car",
             total: 9000,
             status: "in progress",
@@ -135,6 +135,22 @@ export const globalSlice = createSlice({
                 ),
             };
         },
+
+        sortDateAscend: (state, action) => {
+            const employee = state.employees.map(employee => {
+                return { ...employee, date: employee.date };
+            });
+
+            const sortDateAscend = employee.sort((a, b) => Number(new Date(a.date)) - Number(new Date(b.date)));
+            state.employees = sortDateAscend;
+        },
+        sortDateDescend: (state, action) => {
+            const employee = state.employees.map(employee => {
+                return { ...employee, date: employee.date };
+            });
+            const sortDateDescend = employee.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
+            state.employees = sortDateDescend;
+        }
     },
 });
 
@@ -146,6 +162,8 @@ export const {
     totalAmount,
     filterChecked,
     clearTable,
+    sortDateAscend,
+    sortDateDescend,
     filterCheckedReimbursed,
     filterCheckedInProgress,
 } = globalSlice.actions;

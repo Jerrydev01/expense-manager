@@ -33,7 +33,7 @@ const FilterExpense = () => {
     };
 
     return (
-        <section className="px-8 mt-8 w-full h-screen lg:h-full ">
+        <section className="px-8 mt-8 w-full  lg:h-full ">
             <div className="">
                 <div className="flex justify-between items-center mb-2">
                     <p className="">Filter Expenses</p>
