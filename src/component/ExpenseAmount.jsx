@@ -64,7 +64,7 @@ export const ExpenseAmount = () => {
                 </button>
             </div>
             {filterMobile === true ? (
-                <div className=" grid relative justify-center py-10 h-[35rem] place-content-center overflow-y-scroll  z-30">
+                <div className=" grid relative justify-center pt-10 pb-24 h-[35rem] place-content-center overflow-y-scroll  z-30">
                     <FilterExpense />
                 </div>
             ) : null}

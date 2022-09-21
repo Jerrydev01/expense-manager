@@ -150,7 +150,18 @@ export const globalSlice = createSlice({
             });
             const sortDateDescend = employee.sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
             state.employees = sortDateDescend;
-        }
+        },
+        sortByAlphabetReverse: (state, action) => {
+            const employee = state.employees.map(employee => employee);
+            const sortByAlphabetReverse = employee.reverse(action.payload);
+            state.employees = sortByAlphabetReverse;
+        },
+        sortByAlphabet: (state, action) => {
+            const employee = state.employees.map(employee => employee);
+            const sortByAlphabet = employee.sort();
+            state.employees = sortByAlphabet;
+        },
+
     },
 });
 
@@ -164,6 +175,8 @@ export const {
     clearTable,
     sortDateAscend,
     sortDateDescend,
+    sortByAlphabet,
+    sortByAlphabetReverse,
     filterCheckedReimbursed,
     filterCheckedInProgress,
 } = globalSlice.actions;

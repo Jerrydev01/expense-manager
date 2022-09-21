@@ -36,7 +36,7 @@ function App() {
           <FilterExpense
           />
         </div>
-        <div className="lg:w-[55%] lg:shadow-lg shadow-2xl h-screen w-full">
+        <div className="lg:w-[55%] lg:shadow-lg shadow-2xl overflow-y-auto h-screen w-full">
           <EmployeeTable />
         </div>
         <div className="lg:w-[20%]">
