@@ -2,13 +2,13 @@ import React, { useState } from "react";
 // redux toolkit
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
-// import TextField from '@mui/material/TextField';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 // import dayjs from 'dayjs';
 
 import { addToList } from "../features/globalSlice";
+
+const merchants = [
+    'Restaurant', 'Office supplies', 'Breakfast', 'Launch', 'Dinner', 'Hotel', 'Taxi', 'Electronics', 'Car rental', 'Fast food', 'Groceries', 'Parking', 'Ride Sharing', 'Parking fee', 'Shuttle', 'Airline'
+];
 
 const AddForm = () => {
     const [date, setDate] = React.useState("2022-09-02");
@@ -63,9 +63,12 @@ const AddForm = () => {
                                         className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-state"
                                     >
-                                        <option>Electronics</option>
-                                        <option>Hotel</option>
-                                        <option>Rental Car</option>
+
+                                        {merchants.map((merchant) => {
+                                            return <option key={merchant}>{merchant}</option>
+                                        }
+                                        )}
+
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                         <svg

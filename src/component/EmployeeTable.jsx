@@ -184,7 +184,7 @@ export default function EmployeeTable() {
                                                         {total}
                                                     </td>
                                                     <td className="text-base lg:text-sm  text-gray-900 font-light px-6 py-4 whitespace-nowrap"
-                                                        style={status === 'New' ? { color: 'red' } : null || status === 'In progress' ? { fontStyle: 'italic' } : null || status === 'Reimbursed' ? { color: 'green' } : null}
+                                                        style={status === 'New' ? { color: 'red' } : null || status === 'In progress' ? { fontStyle: 'italic', fontWeight: 'bold' } : null || status === 'Reimbursed' ? { color: 'green' } : null}
                                                     >
                                                         {status}
                                                     </td>

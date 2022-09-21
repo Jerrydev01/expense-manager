@@ -44,10 +44,10 @@ function App() {
         </div>
       </section>
       <div className="">
-        <label htmlFor="my-modal" className=" p-3 rounded-full bg-blue-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] lg:right-[14%] md:right-[18%] right-[25%] z-20 "><AiOutlinePlus /></label>
+        <label htmlFor="my-modal" className=" p-4 shadow-md  rounded-full bg-blue-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] lg:right-[14%] md:right-[18%] right-[25%] z-20 "><AiOutlinePlus /></label>
         <div
           onClick={() => dispatch(clearTable())}
-          htmlFor="" className=" p-3 rounded-full bg-red-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] right-[10%] z-20 "><AiFillDelete /></div>
+          htmlFor="" className=" p-4 shadow-md rounded-full bg-red-500 w-fit text-white font-semibold absolute top-[65%] lg:top-[80%] right-[10%] z-20 "><AiFillDelete /></div>
 
       </div>
 
